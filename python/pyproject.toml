@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "leetcode"
+version = "0.1.0"
+description = ""
+authors = ["Changwoo Park <pismute@gmail.com>"]
+readme = "README.md"
+packages = [{include = "leetcode"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
