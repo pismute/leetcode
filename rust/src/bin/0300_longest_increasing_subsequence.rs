@@ -31,6 +31,18 @@ fn main() {
  *
  * O(n^2), O(n + 1)
  *
+ * dp2: top down like LCS with sorted one
+ *
+ *   [0,0,1,2,3,3] - sorted
+ * 0  1 1 1 1 1 1
+ * 1  1 1 2 2 2 2
+ * 0  1 2 2 2 2 2
+ * 3  1 2 2 2 3 3
+ * 2  1 2 2 3 3 3
+ * 3  1 2 2 3 4 4
+ *
+ * O(n^2 + nlogn), O(2n)
+ *
  */
 pub fn length_of_lis(nums: Vec<i32>) -> i32 {
     let mut dp = vec![0; nums.len() + 1];
