@@ -26,7 +26,8 @@ fn main() {
  *
  * O(c^n), O(n)
  *
- * Cache
+ * dp: bottom up
+ *
  * array[coins][amount] =
  *   0 1 2 3 4 5 - index
  *   5 4 3 2 1 0
@@ -36,25 +37,37 @@ fn main() {
  *   --
  * O(c*n), O(c*n)
  *
- * Cache2
+ * dp2
+ * O(c*n), O(n)
+ *
+ * dp: topdown
+ *
+ * array[coins][amount] =
+ *   0 1 2 3 4 5 - index
+ *   0 1 2 3 4 5
+ * 1 1 1 1 1 1 1
+ * 2 1 1 2 2 3 3
+ * 5 1 1 2 2 2 4
+ *   --
+ * O(c*n), O(c*n)
+ *
+ * dp2
  * O(c*n), O(n)
  *
  *   --
  */
 pub fn change(amount: i32, coins: Vec<i32>) -> i32 {
-    let mut a = vec![0; amount as usize + 1];
+    let mut dp = vec![0; amount as usize + 1];
 
-    a[amount as usize] = 1;
+    dp[0] = 1;
 
-    for i in (0..coins.len()).rev() {
-        for j in (0..amount as usize).rev() {
-            let cur_amount = amount - j as i32;
-            let c = coins[i];
-            if cur_amount - c >= 0 {
-                a[j] += a[j + c as usize];
+    for c in coins {
+        for a in 1..=amount as usize {
+            if a >= c as usize {
+                dp[a] += dp[a - c as usize];
             }
         }
     }
 
-    a[0]
+    dp[amount as usize]
 }
