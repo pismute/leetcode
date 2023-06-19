@@ -62,6 +62,7 @@ fn main() {
 
 /* immutable approach(just clone of mutable HashMap, in this case)
  *
+ * 0  : ([], {1, 2, 3})
  * 1st: ([1], {2, 3}),                ([2], {1, 3}),                ([3], {1, 2})
  * 2nd: ([1,2], {3}),  ([1,3], {2}),  ([2,1], {3}),  ([2,3], {1}),  ([3,1], {2}),  ([3,2], {1})
  * 3rd: ([1,2,3], {}), ([1,3,2], {}), ([2,1,3], {}), ([2,3,1], {}), ([3,1,2], {}), ([3,2,1], {})
@@ -109,12 +110,5 @@ pub fn permute(nums: Vec<i32>) -> Vec<Vec<i32>> {
         }
     }
 
-    let mut res = vec![];
-    for (k, v) in &map {
-        for _ in 0..*v {
-            let perms = go(vec![*k], remove(map.clone(), *k));
-            res.extend(perms);
-        }
-    }
-    res
+    go(vec![], map)
 }
