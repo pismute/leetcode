@@ -33,46 +33,22 @@ fn main() {
  * O(n!), O(n)
  */
 pub fn permute(nums: Vec<i32>) -> Vec<Vec<i32>> {
-    type Map = std::collections::HashMap<i32, i32>;
-    fn insert(m: &mut Map, x: i32) {
-        m.entry(x).and_modify(|v| *v += 1).or_insert(1);
-    }
-
-    fn remove(m: &mut Map, x: i32) {
-        if let Some(v) = m.get_mut(&x) {
-            if *v > 1 {
-                *v -= 1;
-            } else {
-                m.remove(&x);
-            }
-        } else {
-            m.remove(&x);
-        }
-    }
-
-    fn go(cur: &mut Vec<i32>, m: &mut Map, acc: &mut Vec<Vec<i32>>) {
-        if m.is_empty() {
+    fn go(cur: &mut Vec<i32>, mask: usize, ns: &[i32], acc: &mut Vec<Vec<i32>>) {
+        if cur.len() == ns.len() {
             acc.push(cur.clone());
         } else {
-            let keys = m.keys().copied().collect::<Vec<_>>();
-            for k in keys {
-                cur.push(k);
-                remove(m, k);
-                go(cur, m, acc);
-                insert(m, k);
-                cur.pop();
+            for i in 0..ns.len() {
+                let pos = 1 << i;
+                if mask & pos == 0 {
+                    cur.push(ns[i]);
+                    go(cur, mask | pos, ns, acc);
+                    cur.pop();
+                }
             }
         }
     }
 
-    let mut map = nums
-        .into_iter()
-        .fold(std::collections::HashMap::new(), |mut acc, x| {
-            insert(&mut acc, x);
-            acc
-        });
-
     let mut res = vec![];
-    go(&mut vec![], &mut map, &mut res);
+    go(&mut vec![], 0, &nums, &mut res);
     res
 }
