@@ -1,4 +1,5 @@
 from typing import List
+from assertion import assert_equal
 
 class Solution:
     """
@@ -36,8 +37,8 @@ class Solution:
                     dp[j] += dp[j - 1]
 
         return dp[m - 1]
-    
+
 if __name__ == '__main__':
-    assert Solution().uniquePathsWithObstacles([[0,0,0],[0,1,0],[0,0,0]]) == 2
-    assert Solution().uniquePathsWithObstacles([[0,1],[0,0]]) == 1
+    assert_equal(Solution().uniquePathsWithObstacles([[0,0,0],[0,1,0],[0,0,0]]), 2)
+    assert_equal(Solution().uniquePathsWithObstacles([[0,1],[0,0]]), 1)
     

@@ -1,5 +1,6 @@
 from typing import List
 from array import array
+from assertion import assert_equal
 
 class Solution:
     """
@@ -25,9 +26,9 @@ class Solution:
                 dp[j] += grid[i][j]
 
         return dp[ll - 1]
-        
+
 if __name__ == '__main__':
-    assert Solution().minPathSum([[1,2],[1,1]]) == 3
-    assert Solution().minPathSum([[1,3,1],[1,5,1],[4,2,1]]) == 7
-    assert Solution().minPathSum([[1,2,3],[4,5,6]]) == 12
+    assert_equal(Solution().minPathSum([[1,2],[1,1]]), 3)
+    assert_equal(Solution().minPathSum([[1,3,1],[1,5,1],[4,2,1]]), 7)
+    assert_equal(Solution().minPathSum([[1,2,3],[4,5,6]]), 12)
     

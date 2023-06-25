@@ -1,5 +1,6 @@
 from typing import List
 from array import array
+from assertion import assert_equal
 
 class Solution:
     """
@@ -53,6 +54,6 @@ class Solution:
         return max(dp)
 
 if __name__ == '__main__':
-    assert Solution().rob([1,2,3,1]) == 4
-    assert Solution().rob([2,7,9,3,1]) == 12
+    assert_equal(Solution().rob([1,2,3,1]), 4)
+    assert_equal(Solution().rob([2,7,9,3,1]), 12)
     

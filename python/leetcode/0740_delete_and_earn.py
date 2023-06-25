@@ -2,6 +2,7 @@ from typing import List
 from array import array
 import sys
 from collections import defaultdict
+from assertion import assert_equal
 
 class Solution:
     """
@@ -42,6 +43,6 @@ class Solution:
 
 
 if __name__ == '__main__':
-    assert Solution().deleteAndEarn([3,4,2]) == 6
-    assert Solution().deleteAndEarn([2,2,3,3,3,4]) == 9
+    assert_equal(Solution().deleteAndEarn([3,4,2]), 6)
+    assert_equal(Solution().deleteAndEarn([2,2,3,3,3,4]), 9)
     

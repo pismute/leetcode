@@ -1,3 +1,5 @@
+from assertion import assert_equal
+
 class Solution:
     """
     "babad"
@@ -22,6 +24,6 @@ class Solution:
         return longest
 
 if __name__ == '__main__':
-    assert Solution().longestPalindrome("babad") == "bab"
-    assert Solution().longestPalindrome("cbbd") == "bb"
+    assert_equal(Solution().longestPalindrome("babad"), "bab")
+    assert_equal(Solution().longestPalindrome("cbbd"), "bb")
     

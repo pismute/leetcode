@@ -1,4 +1,5 @@
 from array import array
+from assertion import assert_equal
 
 class Solution:
     """
@@ -34,8 +35,8 @@ class Solution:
                     dp[j] += dp[j-1]
                 
         return dp[mi]
-        
+
 if __name__ == '__main__':
-    assert Solution().uniquePaths(3, 2) == 3
-    assert Solution().uniquePaths(3, 7) == 28
+    assert_equal(Solution().uniquePaths(3, 2), 3)
+    assert_equal(Solution().uniquePaths(3, 7), 28)
     

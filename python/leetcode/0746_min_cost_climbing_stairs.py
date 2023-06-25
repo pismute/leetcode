@@ -1,5 +1,6 @@
 from typing import List
 from array import array
+from assertion import assert_equal
 
 class Solution:
     """
@@ -39,6 +40,6 @@ class Solution:
         return min(dp)
     
 if __name__ == '__main__':
-    assert Solution().minCostClimbingStairs([1,100,1,1,1]) == 3
-    assert Solution().minCostClimbingStairs([10,15,20]) == 15
-    assert Solution().minCostClimbingStairs([1,100,1,1,1,100,1,1,100,1]) == 6
+    assert_equal(Solution().minCostClimbingStairs([1,100,1,1,1]), 3)
+    assert_equal(Solution().minCostClimbingStairs([10,15,20]), 15)
+    assert_equal(Solution().minCostClimbingStairs([1,100,1,1,1,100,1,1,100,1]), 6)

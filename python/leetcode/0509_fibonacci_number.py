@@ -1,3 +1,5 @@
+from assertion import assert_equal
+
 class Solution:
     """
     F(0) = 0, F(1) = 1
@@ -14,7 +16,7 @@ class Solution:
         return dp[n % 2]
     
 if __name__ == '__main__':
-    assert Solution().fib(2) == 1
-    assert Solution().fib(3) == 2
-    assert Solution().fib(4) == 3
+    assert_equal(Solution().fib(2), 1)
+    assert_equal(Solution().fib(3), 2)
+    assert_equal(Solution().fib(4), 3)
     

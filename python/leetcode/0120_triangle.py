@@ -1,5 +1,6 @@
 from typing import List
 from array import array
+from assertion import assert_equal
 
 class Solution:
     """
@@ -27,6 +28,6 @@ class Solution:
         return dp[0]
 
 if __name__ == '__main__':
-    assert Solution().minimumTotal([[2],[3,4],[6,5,7],[4,1,8,3]]) == 11
-    assert Solution().minimumTotal([[-10]]) == -10
+    assert_equal(Solution().minimumTotal([[2],[3,4],[6,5,7],[4,1,8,3]]), 11)
+    assert_equal(Solution().minimumTotal([[-10]]), -10)
     

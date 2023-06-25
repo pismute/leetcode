@@ -1,3 +1,5 @@
+from assertion import assert_equal
+
 class Solution:
     """
     n = 4
@@ -33,7 +35,7 @@ class Solution:
             dp[i % 2] = dp[0] + dp[1]
 
         return dp[n % 2]
-    
+
 if __name__ == '__main__':
-    assert Solution().climbStairs(2) == 2
-    assert Solution().climbStairs(3) == 3
+    assert_equal(Solution().climbStairs(2), 2)
+    assert_equal(Solution().climbStairs(3), 3)

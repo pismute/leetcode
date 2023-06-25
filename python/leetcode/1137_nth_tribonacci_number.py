@@ -1,3 +1,5 @@
+from assertion import assert_equal
+
 class Solution:
     """
     T0 = 0, T1 = 1, T2 = 1, and Tn+3 = Tn + Tn+1 + Tn+2 for n >= 0.
@@ -13,6 +15,6 @@ class Solution:
         return dp[n % 3]
         
 if __name__ == '__main__':
-    assert Solution().tribonacci(4) == 4
-    assert Solution().tribonacci(25) == 1389537
+    assert_equal(Solution().tribonacci(4), 4)
+    assert_equal(Solution().tribonacci(25), 1389537)
     
