@@ -53,9 +53,8 @@ pub fn permute_unique(mut nums: Vec<i32>) -> Vec<Vec<i32>> {
         } else {
             for i in 0..ns.len() {
                 let pos = 1 << i;
-                let prev_pos = 1 << (i - 1);
                 if mask & pos == 0 {
-                    if i > 0 && ns[i] == ns[i - 1] && mask & prev_pos != 0 {
+                    if i > 0 && ns[i] == ns[i - 1] && mask & (1 << (i - 1)) != 0 {
                         continue;
                     }
                     cur.push(ns[i]);
