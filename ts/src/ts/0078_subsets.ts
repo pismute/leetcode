@@ -1,5 +1,4 @@
-import deepEqual from 'deep-equal';
-import assert from 'node:assert';
+import assertEqual from './assert';
 
 /*
 * [1,2,3]
@@ -31,8 +30,8 @@ function sort(arr: number[][]): number[][] {
   return arr;
 }
 
-assert(deepEqual(sort(subsets([1, 2, 3])), sort([[], [1], [2], [1, 2], [3], [1, 3], [2, 3], [1, 2, 3]], { strict: true })));
-assert(deepEqual(sort(subsets([0])), sort([[], [0]]), { strict: true }));
+assertEqual(subsets([1, 2, 3]), [[], [1], [2], [1, 2], [3], [1, 3], [2, 3], [1, 2, 3]]);
+assertEqual(subsets([0]), [[], [0]]);
 
 
 

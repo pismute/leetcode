@@ -1,4 +1,4 @@
-import assert from 'node:assert';
+import assertEqual from './assert';
 
 /*
  * n = 3
@@ -28,9 +28,8 @@ function climbStairs(n: number): number {
   return dp[n % 2];
 };
 
-console.log("run:");
-assert.equal(climbStairs(2), 2);
-assert.equal(climbStairs(3), 3);
+assertEqual(climbStairs(2), 2);
+assertEqual(climbStairs(3), 3);
 
 
 
