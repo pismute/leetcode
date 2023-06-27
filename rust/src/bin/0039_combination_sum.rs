@@ -39,9 +39,9 @@ fn main() {
  * dp[2] = [[2]]
  * dp[3] = [[3]]
  * dp[4] = dp[4-2]*2 + dp[4-3]*3 = [[2,2]]
- * dp[5] = dp[5-2]*2 + dp[5-3]*3 = [[3,2], [2,3]]
+ * dp[5] = dp[5-2]*2 + dp[5-3]*3 = [[3,2], [2,3]] = [[2,3]]
  * dp[6] = dp[6-2]*2 + dp[6-3]*3 + dp[6-6]*6 = [[2,2,2], [3,3], [6]]
- * dp[7] = dp[7-2]*2 + dp[7-3]*3 + dp[7-6]*6 + dp[7-7]*7 = [[3,2,2], [2,3,2], [2,2,3], [7]]
+ * dp[7] = dp[7-2]*2 + dp[7-3]*3 + dp[7-6]*6 + dp[7-7]*7 = [[2,3,2], [2,2,3], [7]] = [[2,2,3], [7]]
  *
  * dp = vector of set of sorted vector
  * O(c*(n + nlogn)), O(n*c*n)
@@ -59,59 +59,59 @@ fn main() {
  *
  * O(2^n), O(n)
  */
-
-pub fn combination_sum(candidates: Vec<i32>, target: i32) -> Vec<Vec<i32>> {
-    fn go(
-        i: usize,
-        cur: i32,
-        cs: &mut Vec<i32>,
-        candies: &[i32],
-        tar: i32,
-        acc: &mut Vec<Vec<i32>>,
-    ) {
-        if cur == tar {
-            acc.push(cs.clone());
-        } else if i >= candies.len() || cur > tar {
-        } else {
-            let c = candies[i];
-            cs.push(c);
-            go(i, cur + c, cs, candies, tar, acc);
-            cs.pop();
-            go(i + 1, cur, cs, candies, tar, acc);
-        }
-    }
-
-    let mut empty = vec![];
-    let mut res = vec![];
-    go(0, 0, &mut empty, &candidates, target, &mut res);
-    res
-}
-
-// dp
+// backtracking: 1
 // pub fn combination_sum(candidates: Vec<i32>, target: i32) -> Vec<Vec<i32>> {
-//     type Set = std::collections::HashSet<Vec<i32>>;
-//     type DP = Vec<Set>;
-//     let mut dp: DP = vec![Set::with_capacity(0); target as usize + 1];
-
-//     dp[0].insert(vec![]);
-//     for i in 1..=target as usize {
-//         let mut res = Set::new();
-//         for c in &candidates {
-//             if i >= *c as usize {
-//                 for arr in &dp[i - *c as usize] {
-//                     let mut new_arr = arr.clone();
-//                     new_arr.push(*c);
-//                     new_arr.sort();
-//                     res.insert(new_arr);
-//                 }
-//             }
+//     fn go(
+//         i: usize,
+//         cur: i32,
+//         cs: &mut Vec<i32>,
+//         candies: &[i32],
+//         tar: i32,
+//         acc: &mut Vec<Vec<i32>>,
+//     ) {
+//         if cur == tar {
+//             acc.push(cs.clone());
+//         } else if i >= candies.len() || cur > tar {
+//         } else {
+//             let c = candies[i];
+//             cs.push(c);
+//             go(i, cur + c, cs, candies, tar, acc);
+//             cs.pop();
+//             go(i + 1, cur, cs, candies, tar, acc);
 //         }
-//         dp[i] = res;
 //     }
 
+//     let mut empty = vec![];
 //     let mut res = vec![];
-//     for set in &dp[target as usize] {
-//         res.push(set.into_iter().copied().collect());
-//     }
+//     go(0, 0, &mut empty, &candidates, target, &mut res);
 //     res
 // }
+
+// dp
+pub fn combination_sum(candidates: Vec<i32>, target: i32) -> Vec<Vec<i32>> {
+    type Set = std::collections::HashSet<Vec<i32>>;
+    type DP = Vec<Set>;
+    let mut dp: DP = vec![Set::new(); target as usize + 1];
+
+    dp[0].insert(vec![]);
+    for i in 1..=target as usize {
+        let mut res = Set::new();
+        for c in &candidates {
+            if i >= *c as usize {
+                for arr in &dp[i - *c as usize] {
+                    let mut new_arr = arr.clone();
+                    new_arr.push(*c);
+                    new_arr.sort();
+                    res.insert(new_arr);
+                }
+            }
+        }
+        dp[i] = res;
+    }
+
+    let mut res = vec![];
+    for set in &dp[target as usize] {
+        res.push(set.into_iter().copied().collect());
+    }
+    res
+}
