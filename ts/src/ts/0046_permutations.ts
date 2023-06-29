@@ -1,38 +1,25 @@
 import assertEqual from './assert';
 
 /*
- * [1,2,3]
  *
- *                 1                    2                           3          
- *           2          3         1          3                 1         2
- *           3          2         3          1                 2         3
+ * [1, 100, 1, 1
+ *  (1, 0), (1, 100), (2, 100), (2, 3)
  *
+ * O(n), O(2)
  */
-function permute(nums: number[]): number[][] {
-  const res: number[][] = [];
+function minCostClimbingStairs(cost: number[]): number {
+  const dp = Array(2).fill(0);
 
-  function go(mask: number, cur: number[]) {
-    if (mask === ((1 << nums.length) - 1)) {
-      res.push(cur.slice());
-    } else {
-      for (let i = 0; i < nums.length; i++) {
-        const pos: number = 1 << i;
-        if ((mask & pos) === 0) {
-          cur.push(nums[i]);
-          go(mask | 1 << i, cur);
-          cur.pop();
-        }
-      }
-    }
+  for (let i = 0; i < cost.length; i++) {
+    dp[i % 2] = Math.min.apply(null, dp) + cost[i];
   }
 
-  go(0, []);
-  return res;
+  return Math.min.apply(null, dp);
 };
 
-assertEqual(permute([1, 2, 3]), [[1, 2, 3], [1, 3, 2], [2, 1, 3], [2, 3, 1], [3, 1, 2], [3, 2, 1]]);
-assertEqual(permute([0, 1]), [[0, 1], [1, 0]]);
-assertEqual(permute([1]), [[1]]);
+assertEqual(minCostClimbingStairs([10, 15, 20]), 15);
+assertEqual(minCostClimbingStairs([1, 100, 1, 1, 1, 100, 1, 1, 100, 1]), 6);
+
 
 
 
