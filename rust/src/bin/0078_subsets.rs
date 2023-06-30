@@ -30,18 +30,16 @@ fn main() {
  * O(2^n), O(n)
  */
 pub fn subsets(nums: Vec<i32>) -> Vec<Vec<i32>> {
-    fn go(i: usize, ss: &mut Vec<i32>, ns: &[i32], acc: &mut Vec<Vec<i32>>) {
-        acc.push(ss.clone());
+    fn go(i: usize, ss: &mut Vec<i32>, ns: &[i32]) -> Vec<Vec<i32>> {
+        let mut acc = vec![ss.clone()];
 
         for j in i..ns.len() {
             ss.push(ns[j]);
-            go(j + 1, ss, ns, acc);
+            acc.extend(go(j + 1, ss, ns));
             ss.pop();
         }
+        acc
     }
 
-    let len = nums.len() * (nums.len() - 1) / 2;
-    let mut res = Vec::with_capacity(len);
-    go(0, &mut Vec::with_capacity(nums.len()), &nums, &mut res);
-    res
+    go(0, &mut Vec::with_capacity(nums.len()), &nums)
 }
