@@ -7,9 +7,8 @@ def assert_equal(a, b, msg="assertEqual"):
     if type(a) == list:
         sort(a)
         sort(b)
-        assert a == b
-    else:
-        assert a == b
+
+    assert a == b, f"{a} == {b}"
 
     print(f"{msg}: --- {time.time() - start_time} seconds ---")
     
