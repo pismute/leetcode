@@ -11,7 +11,7 @@ export default function assertEqual(a: any, b: any, msg: string = "assert") {
   if (Array.isArray(a)) {
     assert(deepEqual(sort(a), sort(b), { strict: true }), `${a} == ${b}`);
   } else {
-    assert.equal(a, b);
+    assert.equal(a, b, `${a} == ${b}`);
   }
   const end = performance.now();
   console.log(`${msg}: Execution time: ${end - start} ms`);

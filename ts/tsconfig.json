@@ -1,9 +1,10 @@
 {
-    "extends": ["@tsconfig/strictest/tsconfig", "@tsconfig/node20/tsconfig"],
-    "compilerOptions": {
-        "noImplicitAny": true,
-        "strictPropertyInitialization": true,
-        "strictNullChecks": true
-    },
-    "include": ["src/**/*", "tests/**/*"]
+  "extends": ["@tsconfig/strictest/tsconfig", "@tsconfig/node20/tsconfig"],
+  "compilerOptions": {
+    "noImplicitAny": true,
+    "strictPropertyInitialization": true,
+    "strictNullChecks": true,
+    "types": ["node"]
+  },
+  "include": ["src/**/*", "tests/**/*"]
 }
