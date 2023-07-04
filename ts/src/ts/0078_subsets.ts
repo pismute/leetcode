@@ -10,25 +10,20 @@ import assertEqual from './assert';
 * O(n^2), O(n)
 */
 function subsets(nums: number[]): number[][] {
-  function go(i: number, cur: number[], acc: number[][]) {
-    res.push([...cur]);
+  function go(i: number, cur: number[]): number[][] {
+    let sum = [cur.slice()];
 
     for (let j = i; j < nums.length; j++) {
       cur.push(nums[j]);
-      go(j + 1, cur, res);
+      sum = sum.concat(go(j + 1, cur));
       cur.pop();
     }
+
+    return sum;
   }
 
-  const res: number[][] = [];
-  go(0, [], res);
-  return res;
+  return go(0, []);
 };
-
-function sort(arr: number[][]): number[][] {
-  arr.sort();
-  return arr;
-}
 
 assertEqual(subsets([1, 2, 3]), [[], [1], [2], [1, 2], [3], [1, 3], [2, 3], [1, 2, 3]]);
 assertEqual(subsets([0]), [[], [0]]);

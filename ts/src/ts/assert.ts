@@ -9,7 +9,7 @@ function sort(arr: number[][]): number[][] {
 export default function assertEqual(a: any, b: any, msg: string = "assert") {
   const start = performance.now();
   if (Array.isArray(a)) {
-    assert(deepEqual(sort(a), sort(b), { strict: true }));
+    assert(deepEqual(sort(a), sort(b), { strict: true }), `${a} == ${b}`);
   } else {
     assert.equal(a, b);
   }
