@@ -14,7 +14,7 @@ function subsets(nums: number[]): number[][] {
     let sum = [cur.slice()];
 
     for (let j = i; j < nums.length; j++) {
-      cur.push(nums[j]);
+      cur.push(nums[j] as number);
       sum = sum.concat(go(j + 1, cur));
       cur.pop();
     }

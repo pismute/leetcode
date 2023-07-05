@@ -22,10 +22,10 @@ function climbStairs(n: number): number {
   dp[0] = 1;
 
   for (let i = 1; i <= n; i++) {
-    dp[i % 2] += dp[(i + 1) % 2];
+    dp[i % 2] += dp[(i + 1) % 2] as number;
   }
 
-  return dp[n % 2];
+  return dp[n % 2] as number;
 };
 
 assertEqual(climbStairs(2), 2);

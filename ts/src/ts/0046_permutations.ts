@@ -8,10 +8,10 @@ import assertEqual from './assert';
  * O(n), O(2)
  */
 function minCostClimbingStairs(cost: number[]): number {
-  const dp = Array(2).fill(0);
+  const dp: number[] = Array(2).fill(0);
 
   for (let i = 0; i < cost.length; i++) {
-    dp[i % 2] = Math.min.apply(null, dp) + cost[i];
+    dp[i % 2] = Math.min.apply(null, dp) + (cost[i] as number);
   }
 
   return Math.min.apply(null, dp);

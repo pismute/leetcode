@@ -9,7 +9,7 @@ function fib(n: number): number {
     dp[i % 2] = dp.reduce((a, b) => a + b);
   }
 
-  return dp[n % 2]
+  return dp[n % 2] as number;
 };
 
 assertEqual(fib(2), 1);

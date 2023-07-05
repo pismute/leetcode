@@ -16,7 +16,7 @@ function rob(nums: number[]): number {
 
   for (let i = 0; i < nums.length; i++) {
     const max = Math.max.apply(null, dp);
-    dp[i % 2] += nums[i];
+    dp[i % 2] += nums[i] as number;
     dp[(i + 1) % 2] = max;
   }
 
