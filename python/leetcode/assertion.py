@@ -1,7 +1,7 @@
 import collections.abc
 import time
 
-def assert_equal(a, b, msg="assertEqual"):
+def assert_equal(a, b, msg="assert_equal"):
     start_time = time.time()
     
     if type(a) == list:
