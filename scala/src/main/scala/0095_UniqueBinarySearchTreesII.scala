@@ -1,5 +1,3 @@
-case class TreeNode(value: Int, left: TreeNode, right: TreeNode)
-
 object UniqueBinarySearchTreesII extends App {
   /*
    *. [1,2,3]
