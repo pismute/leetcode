@@ -5,8 +5,8 @@ def assert_equal(a, b, msg="assert_equal"):
     start_time = time.time()
     
     if type(a) == list:
-        sort(a)
-        sort(b)
+        a.sort()
+        b.sort()
 
     assert a == b, f"{a} == {b}"
 
