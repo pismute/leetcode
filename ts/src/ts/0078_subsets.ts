@@ -3,26 +3,45 @@ import assertEqual from './assert';
 /*
 * [1,2,3]
 *
+*                                 []
+*                           1                   []
+*                    2          []          2           []
+*                 3    []    3     []    3      []   3        []
 *
-*                      1                    2                    3
-*                2           3                  3               
-*                3
+*
+*
+* O(2^n), O(n)
+*
+* cache:
+*
 * O(n^2), O(n)
 */
 function subsets(nums: number[]): number[][] {
-  function go(i: number, cur: number[]): number[][] {
-    let sum = [cur.slice()];
+  const cache = new Map<[number, number], number[][]>();
 
-    for (let j = i; j < nums.length; j++) {
-      cur.push(nums[j] as number);
-      sum = sum.concat(go(j + 1, cur));
-      cur.pop();
+  function go(i: number, mask: number): number[][] {
+    if (i == nums.length) {
+      return [[]];
     }
+    else if (cache.has([i, mask])) {
+      return cache.get([i, mask]);
+    } else {
+      let res: number[][] = [];
+      // include
+      const res1 = go(i + 1, mask & (1 << i));
+      for (const s of res1) {
+        s.push(nums[i] as number);
+      }
+      res.push(...res1);
 
-    return sum;
+      res.push(...go(i + 1, mask)); // ignore
+
+      cache.set([i, mask], res);
+      return res;
+    }
   }
 
-  return go(0, []);
+  return go(0, 0);
 };
 
 assertEqual(subsets([1, 2, 3]), [[], [1], [2], [1, 2], [3], [1, 3], [2, 3], [1, 2, 3]]);
